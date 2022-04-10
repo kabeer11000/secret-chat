@@ -33,7 +33,7 @@ async function signMessage(privateKey, message) {
         encoded
     );
     // let buffer = new Uint8Array(signature, 0, 5);
-    return [signature]
+    return {signature}
     // signatureValue.textContent = `${buffer}...[${signature.byteLength} bytes total]`;
 }
 
@@ -59,6 +59,9 @@ async function verifyMessage(publicKey, signature, message) {
 
     // signatureValue.classList.add(result ? "valid" : "invalid");
 }
+export const SignManager = {
+    signMessage, verifyMessage, getMessageEncoding
+}
 export const generate = async () => {
     /*
     Generate a sign/verify key, then set up event listeners
@@ -68,7 +71,7 @@ export const generate = async () => {
         {
             name: "RSA-PSS",
             // Consider using a 4096-bit key for systems that require long-term security
-            modulusLength: 2048,
+            modulusLength: 1024,
             publicExponent: new Uint8Array([1, 0, 1]),
             hash: "SHA-256",
         },
