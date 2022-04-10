@@ -25,7 +25,7 @@ const SignUpPage = ({keyExists}) => {
         // const {signature} = await SignManager.signMessage(keyManager.key.privateKey, id);
         // await set(StorageIndex.SESSION_SIGNATURE, signature);
         const signature = await keyManager.signature.loadSignature();
-        const url = `${window.location.protocol}://${window.location.host}/send/?id=${await EncryptionManager.utils.ArrayBufferToBase64URI(signature)}`;
+        const url = `${window.location.protocol}//${window.location.host}/send?id=${await EncryptionManager.utils.ArrayBufferToBase64URI(signature)}`;
         console.log(url);
         setVisible(true);
         // userExists(true)
